@@ -12,24 +12,21 @@ module Basic;
 
   // --- おまじないここまで ---
 
-  wire w_c;
-  wire w_s;
-  wire w_c_ab;
-  wire w_s_ab;
-  wire w_c_abx;
-
-  // ここに全加算器を記述
-
   
 
-  assign w_c_ab = r_a & r_b;
-  assign w_s_ab = r_a ^ r_b;
+  // ここに全加算器を記述
+  wire w_c;
+  wire w_s;
 
-  assign w_c_abx = w_s_ab & r_x;
-  assign w_s     = w_s_ab ^ r_x;
+  FullAdder FA (
+    .i_a    (r_a    ),
+    .i_b    (r_b    ),
+    .i_x    (r_x    ),
+    .o_c    (w_c    ),
+    .o_s    (w_s    )
+  );
 
-  assign w_c = w_c_ab | w_c_abx;
-
+  
   // --- おまじないここから ---
   initial begin
     r_a = 1'b0;
